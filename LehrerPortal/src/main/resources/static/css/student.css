@@ -1,18 +1,3 @@
-/*header {*/
-/*    padding: 10px 20px;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    margin-left: 20%;*/
-/*    margin-right: 20%;*/
-/*}*/
-
-/*.back-button {*/
-/*    text-decoration: none;*/
-/*    font-weight: bold;*/
-/*    margin-right: 30px;*/
-/*}*/
-
 nav {
     justify-content: space-between;
     display: flex;
@@ -59,33 +44,41 @@ div {
     border-radius: 10px;
     padding-left: 20px;
     padding-top: 5px;
-    back
-    opacity: 0.2;
+    opacity: 0.8;
 }
 
 .widget:hover {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-.h2 {
-    margin-top: 0;
+.top-row {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.top-row > h4 {
+    margin: 0;
+    margin-left: 10px;
+    z-index: 1000;
+    color: #000;
 }
 
 main {
     justify-content: center;
 }
 
-/*.popup {*/
-/*    display: none;*/
-/*    position: fixed;*/
-/*    top: 50%;*/
-/*    left: 50%;*/
-/*    transform: translate(-50%, -50%);*/
-/*    background-color: #fff;*/
-/*    padding: 20px;*/
-/*    border: 1px solid #ccc;*/
-/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
-/*}*/
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 section {
     display: none;
@@ -100,10 +93,14 @@ section:target {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
     width: 20%;
     padding: 5px;
     margin-right: 10px;
+}
+
+.widget > p {
+    color: #000;
+    padding: 15px;
 }
 
 .round-button {

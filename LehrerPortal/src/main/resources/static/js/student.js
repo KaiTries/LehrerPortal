@@ -171,7 +171,7 @@ const createSummarizeWidget = () => {
         'yellow': 3
     }
 
-    let allWidgets = document.querySelectorAll('.card');
+    let allWidgets = document.querySelectorAll('.widget');
 
     let importantWidgets = [];
 
