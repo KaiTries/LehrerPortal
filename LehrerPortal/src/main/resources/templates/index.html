@@ -19,25 +19,30 @@
         </div>
     </div>
 </header>
+
 <main>
+    <div id="popup" class="popup" style="display: none;">
+        <h1>Schüler:</h1>
+        <input type="text" id="name" placeholder="Enter Name">
+        <button id="popup-ok-button">Ok</button>
+    </div>
+
+
+
+
+    <div>
+        <button id="create-class" class="back-button">Add Class</button>
+    </div>
+
     <section class="cards">
-        <div class="card">
-            <h2>2a</h2>
+        <div th:each="class : ${classes}" class="card">
+            <h2 th:text="${class.getKlassenName()}">class name</h2>
             <p>I have this class on Monday morning.</p>
-            <a href="/classes/class">Goto class</a>
-        </div>
-        <div class="card">
-            <h2>4b</h2>
-            <p>Only substitution teacher for this class.</p>
-            <a href="/classes/class">Goto class</a>
-        </div>
-        <div class="card">
-            <h2>3c</h2>
-            <p>Some other class on Thursday afternoon.</p>
-            <a href="/classes/class">Goto class</a>
+            <a th:href="@{/classes/{class}(class=${class.getKlassenName()})}">Goto class</a>
         </div>
     </section>
 </main>
+<script type="module" th:src="@{/js/index.js}"></script>
 </body>
 
 </html>
