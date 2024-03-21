@@ -105,8 +105,8 @@ document.getElementById("upload-btn").addEventListener("click", function () {
                 doSomethingAfterSleep();
                 var lernzielData = {
                     uid: uuidv4(),
-                    fb_id: 11,
-                    f_id: 0,
+                    fb_id: 1,
+                    f_id: 11,
                     kb_id: 0,
                     ha_id: 0,
                     k_id: "xyz789",
