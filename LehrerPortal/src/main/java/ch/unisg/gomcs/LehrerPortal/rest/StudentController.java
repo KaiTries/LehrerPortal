@@ -1,12 +1,16 @@
 package ch.unisg.gomcs.LehrerPortal.rest;
 
 
+import ch.unisg.gomcs.LehrerPortal.database.MongoLernzielDocument;
 import ch.unisg.gomcs.LehrerPortal.database.MongoStudentDocument;
 import ch.unisg.gomcs.LehrerPortal.database.StudentService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class StudentController {
@@ -14,8 +18,10 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping("/students")
-    public String createStudent() {
-        studentService.save(new MongoStudentDocument("John", "Doe"));
+    public String createStudent(@RequestBody JsonNode name) {
+        // map the name string to a JsonNode object
+        // then extract the name from the JsonNode object
+        studentService.save(new MongoStudentDocument(name.get("name").asText()));
         return "Student created";
     }
 
@@ -23,5 +29,31 @@ public class StudentController {
     public String getStudent() {
         return studentService.findAll().toString();
     }
+
+    @GetMapping("/students/{student}")
+    public String getStudent(@PathVariable String student) throws JsonProcessingException {
+        Optional<MongoStudentDocument> studentFound = studentService.findById(student);
+        if (studentFound.isEmpty()) {
+            return "Student not found";
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(studentFound.get());
+    }
+
+    @PostMapping("/students/{student}")
+    public String createLernziel(@PathVariable String student, @RequestBody MongoLernzielDocument lernziel) {
+        Optional<MongoStudentDocument> studentDoc = studentService.findById(student);
+        if (studentDoc.isEmpty()) {
+            return "Student not found";
+        }
+        MongoStudentDocument studentActual = studentDoc.get();
+        studentActual.addLernziel(lernziel);
+
+        // Assuming id and name are properties of MongoLernzielDocument
+        // and that you have a constructor or setters in MongoStudentDocument to handle these
+        studentService.save(studentActual);
+        return "Lernziel created";
+    }
+
 
 }
