@@ -50,17 +50,6 @@ nav ul {
     display: none;
 }
 
-/*.widget {*/
-/*    color: #222;*/
-/*    padding: 10px;*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*    border-radius: 10px;*/
-/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-/*    min-width: 200px;*/
-/*    max-width: 600px;*/
-/*}*/
-
 div {
     margin: 0;
     padding: 0;
@@ -69,6 +58,9 @@ div {
 .widget {
     border-radius: 10px;
     padding-left: 20px;
+    padding-top: 5px;
+    back
+    opacity: 0.2;
 }
 
 .widget:hover {
@@ -109,7 +101,9 @@ section:target {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    width: 25%;
+    width: 20%;
+    padding: 5px;
+    margin-right: 10px;
 }
 
 .round-button {
@@ -118,6 +112,7 @@ section:target {
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .round-button:hover {
