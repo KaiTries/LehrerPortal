@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Page</title>
+    <style>
+        .class-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .profile-widget {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            color: #213547;
+        }
+
+        .profile-image img {
+            border-radius: 50%;
+            width: 80px; /* Adjust based on your preference */
+            height: 80px; /* Adjust to maintain aspect ratio */
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .profile-info h2, .profile-info p {
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<h1>Klasse A - Students</h1>
+    <div class="class-container">
+
+        <div class="profile-widget">
+            <div class="profile-image">
+                <img src="student.webp" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2>Marco Meier</h2>
+                <p>Birthdate: March 21, 2014</p>
+            </div>
+        </div>
+        <div class="profile-widget">
+            <div class="profile-image">
+                <img src="student.webp" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2>Marco Meier</h2>
+                <p>Birthdate: March 21, 2014</p>
+            </div>
+        </div>
+    </div>
+    <!-- Repeat for more students -->
+</body>
+</html>
