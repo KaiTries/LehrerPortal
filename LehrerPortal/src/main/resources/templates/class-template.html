@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${className}">Class Page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
     <style>
         .class-container {
             display: flex;
@@ -42,11 +43,11 @@
 <div class="class-container">
     <div th:each="student : ${students}" class="profile-widget">
         <div class="profile-image">
-            <img src="student.webp" alt="Profile Picture">
+            <img th:src="@{/images/student.webp}" alt="Profile Picture">
         </div>
         <div class="profile-info">
             <h2 th:text="${student.getName()}">Student Name</h2>
-            <p th:text="'Birthdate: ' + ${#dates.format(student.getDateOfBirth(), 'MMMM dd, yyyy')}">Birthdate</p>
+            <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>
         </div>
     </div>
 </div>
