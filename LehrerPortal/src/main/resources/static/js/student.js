@@ -22,7 +22,7 @@ document.getElementById("create-lernziel-btn").addEventListener("click", functio
         bezeichnung: description
     };
 
-    fetch(`http://localhost:8080/classes/class/test`, {
+    fetch(window.location.href, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
