@@ -72,9 +72,55 @@ document.getElementById("upload-btn").addEventListener("click", function () {
         if (file) {
             selectedFile = file;
             alert('File selected successfully!');
-            console.log(selectedFile); // Log the selected file to the console
+            var jsonObj = [
+                    "Ich kann in Sätzen Kommas korrekt setzen." ,
+                    "Ich kann die 5 Kommaregeln in Sätzen anwenden." ,
+                    "Ich kann mehrere Sätze mit einem Bindewort sinngemäss zu einem Satz verknüpfen." ,
+                    "Ich kann mit vorgegebenen Bindewörtern Sätze bilden." ,
+                    "Ich kann in Sätzen Bindewörter passend einfügen." ,
+                    "Ich setze Rechtschreibung und Grammatik korrekt um."
+                    ]
+            for (let i = 0; i < jsonObj.length; i++) {
+                doSomethingAfterSleep();
+                var lernzielData = {
+                    uid: uuidv4(),
+                    fb_id: currentSelection,
+                    f_id: 0,
+                    kb_id: 0,
+                    ha_id: 0,
+                    k_id: "xyz789",
+                    code: "ABC123",
+                    aufbau: "Some aufbau",
+                    zyklus: "Some zyklus",
+                    aufzaehlungspunkt: "Können",
+                    strukturtyp: "Some strukturtyp",
+                    sprache: "German",
+                    bezeichnung: jsonObj[i]
+                };
+        fetch(window.location.href, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(lernzielData)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log("Lernziel created successfully");
+                        } else {
+                            console.error("Failed to create Lernziel");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    })
+            }
+            alert("Lernziel created successfully");
+            window.location.reload();
         }
-    });
+    }
+
+    );
     fileInput.click();
 });
 
@@ -311,3 +357,16 @@ function uuidv4() {
         return v.toString(16);
     });
 }
+
+
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+// Usage with async/await
+async function doSomethingAfterSleep() {
+    console.log('Before sleep');
+    await sleep(1000);
+    console.log('After sleep of 2 seconds');
+}
+

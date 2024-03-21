@@ -3,6 +3,7 @@ package ch.unisg.gomcs.LehrerPortal.rest;
 
 import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoLernzielDocument;
 import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoStudentDocument;
+import ch.unisg.gomcs.LehrerPortal.domain.dto.PhotoUpload;
 import ch.unisg.gomcs.LehrerPortal.domain.services.ClassesService;
 import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoClassDocument;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -70,13 +71,11 @@ public class ClassRestController {
     }
 
 
-
-
     /**
-     * Get all classes
-     * @return
-     * @throws JsonProcessingException
-     */
+         * Get all classes
+         * @return
+         * @throws JsonProcessingException
+         */
     @GetMapping("/classes")
     public String getClasses() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
