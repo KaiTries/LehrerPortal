@@ -79,7 +79,7 @@ student {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #f0f0f0;
+    background-color: #f1f1f1;
     color : #213547;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -87,6 +87,7 @@ student {
     margin: 10px;
     flex: 1;
     margin-top: 66px;
+    opacity: 0.8;
 }
 
 img {
@@ -218,8 +219,17 @@ section:target {
     display: block;
 }
 
+#grade-button {
+    box-shadow: unset;
+    transition: unset;
+}
+
 .dropdown-content div:hover {background-color: #f1f1f1}
 
 
-
+@media (prefers-color-scheme: dark) {
+    .widget {
+        background-color: #f1f1f1;
+    }
+}
 

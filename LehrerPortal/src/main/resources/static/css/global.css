@@ -65,7 +65,7 @@ header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-header .profile-picture img {
+header > .profile-picture img {
     width: 100px; /* Adjust size as needed */
     height: 100px; /* Adjust size as needed */
     border-radius: 50%; /* This creates the circular shape */
@@ -74,28 +74,28 @@ header .profile-picture img {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds a slight shadow for depth */
 }
 
-header .profile-info {
+header > .profile-info {
     margin-left: 20px;
 }
 
-header .profile-info h1 {
+header > .profile-info > h1 {
     margin: 0;
     font-size: 24px; /* Adjust size as needed */
 }
 
-header .profile-info p {
+header > .profile-info > p {
     margin: 5px 0; /* Adds a little space between the paragraphs */
 }
 
 
-header .profile img {
+header > .profile > img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-right: 20px;
 }
 
-header .profile-info {
+header > .profile-info {
     font-size: 1.2em;
 }
 
@@ -106,7 +106,7 @@ header .profile-info {
 }
 
 .card {
-    background-color: #f0f0f0;
+    background-color: #f1f1f1;
     color : #213547;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -117,13 +117,14 @@ header .profile-info {
     min-width: 250px;
     max-height: 150px;
     min-height: 150px;
+    opacity: 0.8;
 }
 
-.card h2 {
+.card > h2 {
     margin-top: 0;
 }
 
-.card a {
+.card > a {
     display: block;
     text-align: center;
     margin-top: 20px;
@@ -134,7 +135,7 @@ header .profile-info {
     border-radius: 5px;
 }
 
-.card a:hover {
+.card > a:hover {
     background-color: #2a7e43;
 }
 

@@ -1,6 +1,6 @@
 main .profile-card {
     display: flex;
-    background-color: #f0f0f0;
+    background-color: #f1f1f1;
     color : #213547;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -11,6 +11,7 @@ main .profile-card {
     min-width: 250px;
     max-height: 150px;
     min-height: 150px;
+    opacity: 0.8;
 }
 
 main .profile-left {
@@ -103,7 +104,7 @@ main .profile-right h2 {
     align-items: center;
     padding: 8px 12px;
     border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    background-color: rgba(225, 225, 225, 0.93);
     color: #333;
     font-size: 16px;
     cursor: pointer;
@@ -114,7 +115,7 @@ main .profile-right h2 {
 }
 
 .back-button:hover, .back-button:focus {
-    background-color: #e9e9e9;
+    background-color: #f1f1f1;
     color: #000;
     outline: none; /* Removes the outline to keep it looking clean */
 }

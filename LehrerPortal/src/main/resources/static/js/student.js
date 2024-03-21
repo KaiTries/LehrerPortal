@@ -93,7 +93,6 @@ document.getElementById("upload-btn").addEventListener("click", function () {
         const file = event.target.files[0];
         if (file) {
             selectedFile = file;
-            alert('File selected successfully!');
             var jsonObj = [
                     "Ich kann in Sätzen Kommas korrekt setzen." ,
                     "Ich kann die 5 Kommaregeln in Sätzen anwenden." ,
@@ -106,7 +105,7 @@ document.getElementById("upload-btn").addEventListener("click", function () {
                 doSomethingAfterSleep();
                 var lernzielData = {
                     uid: uuidv4(),
-                    fb_id: currentSelection,
+                    fb_id: 11,
                     f_id: 0,
                     kb_id: 0,
                     ha_id: 0,
@@ -137,8 +136,6 @@ document.getElementById("upload-btn").addEventListener("click", function () {
                         console.error('Error:', error);
                     })
             }
-            alert("Lernziel created successfully");
-            window.location.reload();
         }
     }
 
@@ -198,9 +195,11 @@ const createSummarizeWidget = () => {
     let importantWidgets = [];
 
     for (let widget of allWidgets) {
-        for (let attribute of widget.attributes) {
-            if (attribute.name === "color") {
-                importantWidgets.push(widget);
+        if (widget.parentNode.parentNode.style.display !== "none") {
+            for (let attribute of widget.attributes) {
+                if (attribute.name === "color") {
+                    importantWidgets.push(widget);
+                }
             }
         }
     }
@@ -217,24 +216,28 @@ const createSummarizeWidget = () => {
         counter++;
     }
 
-    const colorStrip = document.querySelector('.color-strip');
+    const colorStrips = document.querySelectorAll('.color-strip');
 
-    let percentageStop = 0;
-    let stepSize = 100 / averagesList.length;
+    for (let colorStrip of colorStrips) {
+        let percentageStop = 0;
+        let stepSize = 100 / averagesList.length;
 
-    let colors = [];
+        let colors = [];
 
-    for (let i = 0; i < averagesList.length; i++) {
-        // stops.push(percentageStop + stepSize * i);
-        colors.push(`${getColor(averagesList[i])} ${percentageStop + stepSize * i}%`);
+        for (let i = 0; i < averagesList.length; i++) {
+            // stops.push(percentageStop + stepSize * i);
+            colors.push(`${getColor(averagesList[i])} ${percentageStop + stepSize * i}%`);
+        }
+
+        colorStrip.style.setProperty('--color-brown', '#A52A2A');
+        colorStrip.style.setProperty('--color-green', '#008000');
+        colorStrip.style.setProperty('--color-orange', '#FFA500');
+        colorStrip.style.setProperty('--color-yellow', '#FFFF00');
+
+        colorStrip.style.background = `linear-gradient(to right, ${colors.join(', ')})`;
     }
 
-    colorStrip.style.setProperty('--color-brown', '#A52A2A');
-    colorStrip.style.setProperty('--color-green', '#008000');
-    colorStrip.style.setProperty('--color-orange', '#FFA500');
-    colorStrip.style.setProperty('--color-yellow', '#FFFF00');
 
-    colorStrip.style.background = `linear-gradient(to right, ${colors.join(', ')})`;
 }
 
 const removeAll = () => {
@@ -249,7 +252,7 @@ const removeAll = () => {
 
 document.getElementById('deutsch-link').addEventListener('click', function (event) {
     event.preventDefault(); // Prevent the default link behavior
-    currentSelection = 0;
+    currentSelection = 11;
     removeAll();
     document.getElementById("deutsch").style.display = "block";
     addEventListenerToLernziel();
@@ -258,7 +261,7 @@ document.getElementById('deutsch-link').addEventListener('click', function (even
 
 document.getElementById('mathematik-link').addEventListener('click', function (event) {
     event.preventDefault(); // Prevent the default link behavior
-    currentSelection = 1;
+    currentSelection = 0;
     removeAll();
     document.getElementById("mathematik").style.display = "block";
     addEventListenerToLernziel();
@@ -340,9 +343,9 @@ const addEventListenerToLernziel = () => {
 document.getElementById("searchInput").addEventListener("click", function () {
     var Fachberech = "";
     if (currentSelection === 0) {
-        Fachberech = "D";
-    } else if (currentSelection === 1) {
         Fachberech = "MA";
+    } else if (currentSelection === 11) {
+        Fachberech = "D";
     } else if (currentSelection === 2) {
         Fachberech = "NMG";
     } else if (currentSelection === 3) {
@@ -417,6 +420,6 @@ function sleep(milliseconds) {
 // Usage with async/await
 async function doSomethingAfterSleep() {
     console.log('Before sleep');
-    await sleep(1000);
+    await sleep(500);
     console.log('After sleep of 2 seconds');
 }
