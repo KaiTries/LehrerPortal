@@ -78,6 +78,97 @@ document.getElementById("upload-btn").addEventListener("click", function () {
     fileInput.click();
 });
 
+function interpolateColor(color1, color2, value) {
+    // Parse colors from hexadecimal format
+    const parseColor = (color) => {
+        return {
+            r: parseInt(color.substring(1, 3), 16),
+            g: parseInt(color.substring(3, 5), 16),
+            b: parseInt(color.substring(5, 7), 16)
+        };
+    };
+
+    // Interpolate each RGB component separately
+    const color1Parsed = parseColor(color1);
+    const color2Parsed = parseColor(color2);
+    const interpolatedColor = {
+        r: Math.round(color1Parsed.r + (color2Parsed.r - color1Parsed.r) * value),
+        g: Math.round(color1Parsed.g + (color2Parsed.g - color1Parsed.g) * value),
+        b: Math.round(color1Parsed.b + (color2Parsed.b - color1Parsed.b) * value)
+    };
+
+    // Convert interpolated color back to hexadecimal format
+    const toHex = (component) => {
+        const hex = component.toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+    };
+
+    return `#${toHex(interpolatedColor.r)}${toHex(interpolatedColor.g)}${toHex(interpolatedColor.b)}`;
+}
+
+const getColor = (average) => {
+    if (average < 1)
+        return interpolateColor('#A52A2A', '#008000', average);
+    else if (average < 2)
+        return interpolateColor('#008000', '#FFA500', average - 1);
+    else if (average <= 3)
+        return interpolateColor('#FFA500', '#FFFF00', average - 2);
+    return '#ffffff';
+}
+
+const createSummarizeWidget = () => {
+
+    const colorDict = {
+        'brown': 0,
+        'green': 1,
+        'orange': 2,
+        'yellow': 3
+    }
+
+    let allWidgets = document.querySelectorAll('.card');
+
+    let importantWidgets = [];
+
+    for (let widget of allWidgets) {
+        for (let attribute of widget.attributes) {
+            if (attribute.name === "color") {
+                importantWidgets.push(widget);
+            }
+        }
+    }
+
+    allWidgets = importantWidgets;
+
+    let averagesList = [];
+    let total = 0;
+    let counter = 1;
+    for (let widget of allWidgets) {
+        const color = widget.color;
+        total += colorDict[widget.attributes.color.value];
+        averagesList.push(total / counter);
+        counter++;
+    }
+
+    const colorStrip = document.querySelector('.color-strip');
+
+    let percentageStop = 0;
+    let stepSize = 100 / averagesList.length;
+
+    let colors = [];
+
+    for (let i = 0; i < averagesList.length; i++) {
+        // stops.push(percentageStop + stepSize * i);
+        colors.push(`${getColor(averagesList[i])} ${percentageStop + stepSize * i}%`);
+    }
+
+    colorStrip.style.setProperty('--color-brown', '#A52A2A');
+    colorStrip.style.setProperty('--color-green', '#008000');
+    colorStrip.style.setProperty('--color-orange', '#FFA500');
+    colorStrip.style.setProperty('--color-yellow', '#FFFF00');
+
+    colorStrip.style.background = `linear-gradient(to right, ${colors.join(', ')})`;
+}
+
 const removeAll = () => {
     document.getElementById("deutsch").style.display = "none";
     document.getElementById("mathematik").style.display = "none";
@@ -95,6 +186,7 @@ document.getElementById('deutsch-link').addEventListener('click', function (even
     removeAll();
     document.getElementById("deutsch").style.display = "block";
     addEventListenerToLernziel();
+    createSummarizeWidget();
 });
 
 document.getElementById('mathematik-link').addEventListener('click', function (event) {
@@ -102,7 +194,6 @@ document.getElementById('mathematik-link').addEventListener('click', function (e
     currentSelection = 1;
     removeAll();
     document.getElementById("mathematik").style.display = "block";
-    addEventListenerToLernziel();
 });
 
 document.getElementById('natur-link').addEventListener('click', function (event) {
@@ -110,7 +201,6 @@ document.getElementById('natur-link').addEventListener('click', function (event)
     currentSelection = 2;
     removeAll();
     document.getElementById("natur").style.display = "block";
-    addEventListenerToLernziel();
 });
 
 document.getElementById('mensch-link').addEventListener('click', function (event) {
@@ -118,7 +208,6 @@ document.getElementById('mensch-link').addEventListener('click', function (event
     currentSelection = 3;
     removeAll();
     document.getElementById("mensch").style.display = "block";
-    addEventListenerToLernziel();
 });
 
 document.getElementById('gesellschaft-link').addEventListener('click', function (event) {
@@ -126,7 +215,6 @@ document.getElementById('gesellschaft-link').addEventListener('click', function 
     currentSelection = 4;
     removeAll();
     document.getElementById("gesellschaft").style.display = "block";
-    addEventListenerToLernziel();
 });
 
 document.getElementById('gestalten-link').addEventListener('click', function (event) {
@@ -134,7 +222,6 @@ document.getElementById('gestalten-link').addEventListener('click', function (ev
     currentSelection = 5;
     removeAll();
     document.getElementById("gestalten").style.display = "block";
-    addEventListenerToLernziel();
 });
 
 document.getElementById('musik-link').addEventListener('click', function (event) {
@@ -142,7 +229,6 @@ document.getElementById('musik-link').addEventListener('click', function (event)
     currentSelection = 6;
     removeAll();
     document.getElementById("gesellschaft").style.display = "gesellschaft";
-    addEventListenerToLernziel();
 });
 
 document.getElementById('bewegung-link').addEventListener('click', function (event) {
@@ -150,19 +236,15 @@ document.getElementById('bewegung-link').addEventListener('click', function (eve
     currentSelection = 7;
     removeAll();
     document.getElementById("bewegung").style.display = "block";
-    addEventListenerToLernziel();
 });
 
 const addEventListenerToLernziel = () => {
     const allRoundButtons = document.querySelectorAll('.round-button');
     allRoundButtons.forEach(button => {
-        console.log("somethin")
         button.addEventListener('click', e => {
 
-            console.log(e);
-
             let lernzielUpdateData = {
-                uid: e.target.uid,
+                uid: button.parentNode.id,
                 bewertung: button.classList[1]
             }
 

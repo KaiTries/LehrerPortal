@@ -38,4 +38,12 @@ public class MongoStudentDocument {
     public List<MongoLernzielDocument> getLernziele(int subject) {
         return lernziele.stream().filter(lernziel -> lernziel.getF_id() == subject).toList();
     }
+
+    public void updateLernziel(String uid, String bewertung){
+        for (MongoLernzielDocument lernziel : lernziele) {
+            if (lernziel.getUid().equals(uid)) {
+                lernziel.setBewertung(bewertung);
+            }
+        }
+    }
 }
