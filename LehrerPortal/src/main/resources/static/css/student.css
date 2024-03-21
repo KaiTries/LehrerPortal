@@ -118,3 +118,13 @@ section {
     display: none;
     left: 10%;
 }
+
+@media (prefers-color-scheme: light) {
+    .nav {
+        color: #213547;
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+}
