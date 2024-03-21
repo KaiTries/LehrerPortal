@@ -55,7 +55,12 @@ public class ClassWebController {
         if (studentProb.isEmpty()) {
             return "Student not found";
         }
-        ObjectMapper objectMapper = new ObjectMapper();
+
+        MongoStudentDocument studentActual = studentProb.get();
+        model.addAttribute("student", studentActual);
+
+
+
         return "student";
     }
 }
