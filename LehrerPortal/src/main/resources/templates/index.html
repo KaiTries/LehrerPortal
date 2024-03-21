@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Profile and Classes</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
+
 <body>
-<div class="profile-section">
-    <div class="profile-picture"><img th:src="@{/images/teacher.webp}" alt="" class="profile-picture"></div>
-    <div>
-        <h2>Emily Frei</h2>
-        <p>Primarschule St.Gallen</p>
+<header>
+    <div class="profile">
+        <img th:src="@{/images/persona.png}" alt="Profile Picture">
+        <div class="profile-info">
+            <h1>Brigit Britt</h1>
+            <p>Deutsch Lehrerin</p>
+            <p>Location: Sekundarschule St. Gallen</p>
+        </div>
     </div>
-</div>
-<div class="central-section">
-    <a href="/classes/classa" class="class-widget">Klasse A</a>
-    <a href="/classes/classb" class="class-widget">Klasse B</a>
-    <a href="/classes/classc" class="class-widget">Klasse C</a>
-    <!-- Add more class widgets as needed -->
-</div>
+</header>
+<main>
+    <section class="cards">
+        <div class="card">
+            <h2>2a</h2>
+            <p>I have this class on Monday morning.</p>
+            <a href="/classes/class">Goto class</a>
+        </div>
+        <div class="card">
+            <h2>4b</h2>
+            <p>Only substitution teacher for this class.</p>
+            <a href="/classes/class">Goto class</a>
+        </div>
+        <div class="card">
+            <h2>3c</h2>
+            <p>Some other class on Thursday afternoon.</p>
+            <a href="/classes/class">Goto class</a>
+        </div>
+    </section>
+</main>
 </body>
+
 </html>
