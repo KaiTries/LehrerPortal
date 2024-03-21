@@ -53,6 +53,7 @@
 <main>
   <student>
     <img th:src="@{/images/student.webp}" alt="Profile Picture" class="profile-picture">
+    <h2 th:text="${student.getName()}">Student Name</h2>
     <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>
     <p class="address">Address: 123 Main St, Anytown, AN 12345</p>
     <p class="phone">Phone: (123) 456-7890</p>
@@ -64,7 +65,7 @@
   <lernziele>
     <section id="deutsch" class="section-div">
       <h3>Deutsch</h3>
-      <div id="deutsch-content">
+      <div id="deutsch-content" class="scrollable-div">
         <div class="color-strip"></div>
         <div th:each="lernziel : ${student.getLernziele(0)}" class="widget"
              th:style="'background-color: ' + ${lernziel.getBewertung()}"
