@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class list</title>
+    <link rel="stylesheet" th:href="@{/css/class.css}">
+</head>
+
+<body>
+<header>
+    <a id="back-button" href="index.html">back</a>
+    <button id="create-student">Add Student</button>
+
+    <div id="popup" class="popup" style="display: none;">
+        <h1>Schüler:</h1>
+        <input type="text" id="name" placeholder="Enter Name">
+        <button id="popup-ok-button">Ok</button>
+    </div>
+</header>
+<main>
+    <h1>2a - students</h1>
+    <div id="students" class="students">
+        <!-- <div class="student-widget" onclick="window.location.href='student.html';">
+           <img src="./resources/persona.png" alt="Student 2">
+           <h3>Sabine Müller</h3>
+           <p>Grade: B+</p>
+           <p>Attendance: 90%</p>
+        </div>
+        <div class="student-widget" onclick="window.location.href='student.html';">
+           <img src="./resources/persona.png" alt="Student 4">
+           <h3>Emma Erickson</h3>
+           <p>Grade: B</p>
+           <p>Attendance: 85%</p>
+        </div> -->
+    </div>
+
+    </div>
+</main>
+
+<script type="module" src="class.js"></script>
+</body>
+
+</html>
