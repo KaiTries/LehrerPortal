@@ -45,7 +45,7 @@ public class ClassWebController {
 
    // TODO: Site for a student dynamically loaded from students db
     @GetMapping("/classes/{klasse}/{student}")
-    public String getStudent(@PathVariable String klasse, @PathVariable String student) throws JsonProcessingException {
+    public String getStudent(@PathVariable String klasse, @PathVariable String student, Model model) throws JsonProcessingException {
         Optional<MongoClassDocument> classProb = classesService.getClas(klasse);
         if (classProb.isEmpty()) {
             return "Class not found";
@@ -56,6 +56,6 @@ public class ClassWebController {
             return "Student not found";
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(studentProb.get());
+        return "student";
     }
 }
