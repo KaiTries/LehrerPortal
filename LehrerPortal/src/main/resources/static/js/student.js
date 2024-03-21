@@ -7,7 +7,7 @@ document.getElementById("create-lernziel-btn").addEventListener("click", functio
     const description = document.getElementById("description").value;
     const type = document.getElementById("type").value;
     const lernzielData = {
-        uid: "abc123",
+        uid: 'abc123456',
         fb_id: currentSelection,
         f_id: 0,
         kb_id: 0,
@@ -89,6 +89,7 @@ document.getElementById('deutsch-link').addEventListener('click', function (even
     currentSelection = 0;
     removeAll();
     document.getElementById("deutsch").style.display = "block";
+    addEventListenerToLernziel();
 });
 
 document.getElementById('mathematik-link').addEventListener('click', function (event) {
@@ -96,6 +97,7 @@ document.getElementById('mathematik-link').addEventListener('click', function (e
     currentSelection = 1;
     removeAll();
     document.getElementById("mathematik").style.display = "block";
+    addEventListenerToLernziel();
 });
 
 document.getElementById('natur-link').addEventListener('click', function (event) {
@@ -103,6 +105,7 @@ document.getElementById('natur-link').addEventListener('click', function (event)
     currentSelection = 2;
     removeAll();
     document.getElementById("natur").style.display = "block";
+    addEventListenerToLernziel();
 });
 
 document.getElementById('mensch-link').addEventListener('click', function (event) {
@@ -110,6 +113,7 @@ document.getElementById('mensch-link').addEventListener('click', function (event
     currentSelection = 3;
     removeAll();
     document.getElementById("mensch").style.display = "block";
+    addEventListenerToLernziel();
 });
 
 document.getElementById('gesellschaft-link').addEventListener('click', function (event) {
@@ -117,6 +121,7 @@ document.getElementById('gesellschaft-link').addEventListener('click', function 
     currentSelection = 4;
     removeAll();
     document.getElementById("gesellschaft").style.display = "block";
+    addEventListenerToLernziel();
 });
 
 document.getElementById('gestalten-link').addEventListener('click', function (event) {
@@ -124,6 +129,7 @@ document.getElementById('gestalten-link').addEventListener('click', function (ev
     currentSelection = 5;
     removeAll();
     document.getElementById("gestalten").style.display = "block";
+    addEventListenerToLernziel();
 });
 
 document.getElementById('musik-link').addEventListener('click', function (event) {
@@ -131,6 +137,7 @@ document.getElementById('musik-link').addEventListener('click', function (event)
     currentSelection = 6;
     removeAll();
     document.getElementById("gesellschaft").style.display = "gesellschaft";
+    addEventListenerToLernziel();
 });
 
 document.getElementById('bewegung-link').addEventListener('click', function (event) {
@@ -138,4 +145,42 @@ document.getElementById('bewegung-link').addEventListener('click', function (eve
     currentSelection = 7;
     removeAll();
     document.getElementById("bewegung").style.display = "block";
+    addEventListenerToLernziel();
 });
+
+const addEventListenerToLernziel = () => {
+    const allRoundButtons = document.querySelectorAll('.round-button');
+    allRoundButtons.forEach(button => {
+        console.log("somethin")
+        button.addEventListener('click', e => {
+
+            console.log(e);
+
+            let lernzielUpdateData = {
+                uid: e.target.uid,
+                bewertung: button.classList[1]
+            }
+
+            console.log(lernzielUpdateData);
+
+            fetch(`http://localhost:8080/classes/class/test`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(lernzielUpdateData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Bewertung updated successfully");
+                        window.location.reload();
+                    } else {
+                        console.error("Failed to update Bewertung");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    });
+}

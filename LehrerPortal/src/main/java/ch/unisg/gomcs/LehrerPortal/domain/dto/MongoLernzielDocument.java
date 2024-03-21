@@ -1,7 +1,8 @@
 package ch.unisg.gomcs.LehrerPortal.domain.dto;
 
-
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class MongoLernzielDocument {
@@ -18,11 +19,13 @@ public class MongoLernzielDocument {
     private String strukturtyp;
     private String sprache;
     private String bezeichnung;
+    private int bewertung;
+    private long timestamp;
 
     public MongoLernzielDocument() {
     }
 
-    public MongoLernzielDocument(String uid, int fb_id, int f_id, int kb_id, int ha_id, String k_id, String code, String aufbau, String zyklus, String aufzaehlungspunkt, String strukturtyp, String sprache, String bezeichnung) {
+    public MongoLernzielDocument(String uid, int fb_id, int f_id, int kb_id, int ha_id, String k_id, String code, String aufbau, String zyklus, String aufzaehlungspunkt, String strukturtyp, String sprache, String bezeichnung, int bewertung) {
         this.uid = uid;
         this.fb_id = fb_id;
         this.f_id = f_id;
@@ -36,5 +39,7 @@ public class MongoLernzielDocument {
         this.strukturtyp = strukturtyp;
         this.sprache = sprache;
         this.bezeichnung = bezeichnung;
+        this.bewertung = bewertung;
+        this.timestamp = System.nanoTime();
     }
 }
