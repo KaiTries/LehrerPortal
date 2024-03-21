@@ -131,6 +131,9 @@ section {
         color: #213547;
         background-color: #ffffff;
     }
+    .nav a {
+        color: #213547;
+    }
     a:hover {
         color: #747bff;
     }

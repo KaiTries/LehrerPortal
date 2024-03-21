@@ -1,4 +1,4 @@
-.profile-card {
+main .profile-card {
     display: flex;
     background-color: #f0f0f0;
     color : #213547;
@@ -13,7 +13,7 @@
     min-height: 150px;
 }
 
-.profile-left {
+main .profile-left {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@
     margin-right: 20px; /* Adjust space between left and right sections */
 }
 
-.profile-picture {
+main .profile-picture {
     width: 100px; /* Adjust based on your needs */
     height: 100px; /* Adjust based on your needs */
     border-radius: 50%;
@@ -31,11 +31,11 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds a slight shadow for depth */
 }
 
-.name {
+main .name {
     margin-top: 10px; /* Space between picture and name */
     font-size: 18px; /* Adjust based on your needs */
 }
-.profile-right {
+main .profile-right {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,10 +43,15 @@
     justify-content: center;
 }
 
-.profile-right p {
+main .profile-right p {
     margin: 5px 0; /* Space between each line of information */
     line-height: 1.5; /* Adjust line height for readability */
 }
+main .profile-right h2 {
+    margin: 0; /* Remove default margin */
+    font-size: 20px; /* Adjust based on your needs */
+}
+
 
 /* Optional: Responsive adjustments */
 @media (max-width: 600px) {
@@ -69,3 +74,25 @@
     gap: 20px;
 
 }
+
+#create-student {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Diameter of the circle */
+    height: 50px; /* Diameter of the circle */
+    border-radius: 50%; /* Makes the button circular */
+    border: 2px solid #007BFF; /* Blue border, adjust color as needed */
+    background-color: #007BFF; /* Blue background, adjust color as needed */
+    color: white; /* Color of the "+" sign */
+    font-size: 24px; /* Size of the "+" sign */
+    cursor: pointer; /* Changes cursor to pointer when hovering over the button */
+    outline: none; /* Removes the outline to make it look cleaner */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for depth */
+}
+
+/* Optional: Add styles for hover effect */
+#create-student:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+

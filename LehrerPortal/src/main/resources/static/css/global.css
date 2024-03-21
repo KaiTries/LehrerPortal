@@ -95,3 +95,47 @@ header .profile img {
 header .profile-info {
     font-size: 1.2em;
 }
+
+
+
+
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.card {
+    background-color: #f0f0f0;
+    color : #213547;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    flex: 1;
+    max-width: 300px;
+    min-width: 250px;
+    max-height: 150px;
+    min-height: 150px;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.card a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #51b16e;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.card a:hover {
+    background-color: #2a7e43;
+}
