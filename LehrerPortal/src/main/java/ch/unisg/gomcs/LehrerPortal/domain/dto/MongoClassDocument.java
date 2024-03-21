@@ -14,7 +14,8 @@ public class MongoClassDocument {
     @Id
     private String klassenName;
     private List<MongoStudentDocument> students;
-
+    
+    // MA.1.A.3.c = Mathematik; 1. Kompetenzbereich; Handlungsaspekt A; 3. Kompetenz; Kompetenzstufe c
 
     public MongoClassDocument() {
 

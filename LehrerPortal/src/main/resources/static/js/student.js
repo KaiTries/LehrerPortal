@@ -1,6 +1,10 @@
 // import { lehrplan_21 } from "./resources/lehrplan-21-kanton-st-gallen";
 
 let currentSelection = null;
+const items = [];
+let selected = null;
+
+let oldQuery = "";
 
 document.getElementById("create-lernziel-btn").addEventListener("click", function () {
 
@@ -10,22 +14,30 @@ document.getElementById("create-lernziel-btn").addEventListener("click", functio
         description = document.getElementById("searchInput").value;
         UUID = selected.uid;
     }
+
+    const possible_item = items.find(item => item.uid === UUID);
+
     const type = document.getElementById("type").value;
-    const lernzielData = {
-        uid: UUID,
-        fb_id: currentSelection,
-        f_id: 0,
-        kb_id: 0,
-        ha_id: 0,
-        k_id: "xyz789",
-        code: "ABC123",
-        aufbau: "Some aufbau",
-        zyklus: "Some zyklus",
-        aufzaehlungspunkt: type,
-        strukturtyp: "Some strukturtyp",
-        sprache: "German",
-        bezeichnung: description
-    };
+    var lernzielData = {};
+    if (possible_item === undefined) {
+        lernzielData = {
+            uid: UUID,
+            fb_id: currentSelection,
+            f_id: 0,
+            kb_id: 0,
+            ha_id: 0,
+            k_id: "xyz789",
+            code: "ABC123",
+            aufbau: "Some aufbau",
+            zyklus: "Some zyklus",
+            aufzaehlungspunkt: type,
+            strukturtyp: "Some strukturtyp",
+            sprache: "German",
+            bezeichnung: description
+        };
+    } else {
+        lernzielData = possible_item;
+    }
 
     fetch(window.location.href, {
         method: 'POST',
@@ -51,8 +63,18 @@ document.getElementById("create-lernziel-btn").addEventListener("click", functio
 
 const togglePopup = () => {
     const popup = document.getElementById('popup');
-    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
 }
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === 'Escape') {
+        const popup = document.getElementById('popup');
+        if (popup.style.display === 'flex') {
+            togglePopup();
+        }
+    }
+});
+
 
 document.getElementById("add-lernziel-btn").addEventListener("click", function () {
     if (currentSelection === "none") {
@@ -239,6 +261,8 @@ document.getElementById('mathematik-link').addEventListener('click', function (e
     currentSelection = 1;
     removeAll();
     document.getElementById("mathematik").style.display = "block";
+    addEventListenerToLernziel();
+    createSummarizeWidget();
 });
 
 document.getElementById('natur-link').addEventListener('click', function (event) {
@@ -312,34 +336,59 @@ const addEventListenerToLernziel = () => {
     });
 }
 
-const items = [];
-let selected = null;
+
+document.getElementById("searchInput").addEventListener("click", function () {
+    var Fachberech = "";
+    if (currentSelection === 0) {
+        Fachberech = "D";
+    } else if (currentSelection === 1) {
+        Fachberech = "MA";
+    } else if (currentSelection === 2) {
+        Fachberech = "NMG";
+    } else if (currentSelection === 3) {
+        Fachberech = "BG";
+    } else if (currentSelection === 4) {
+        Fachberech = "MU";
+    }
 
 
-fetch('https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/lehrplan-21-kanton-st-gallen/records?select=bezeichnung%2C%20uid&where=f_id%20%3D%2011&limit=100&apikey=6698e1aad435de1a1ce4d15e7fddf6e98f0c7f78768c0af05497d54b')
-    .then(response => response.json())
-    .then(data => {
-        // No need to parse dataObj, it's already a JavaScript object
-        // Directly extract "bezeichnung" values and update the outer scope variable
-        data.results.forEach(item => {
-            if (item.bezeichnung) {
-                items.push({ bezeichnung: item.bezeichnung, uid: item.uid });
-            }
-        });
+    var Kompetenz = document.getElementById("Kompetenz").value;
+    var Kompetenzbereich = document.getElementById("Kompetenzbereich").value;
+    var Handlungsaspekt = document.getElementById("Handlungsaspekt").value;
+    var Kompetenzstufe = document.getElementById("Kompetenzstufe").value;
 
-        // Ensure the event listener is attached here to make sure it has access to the populated bezeichnungen array
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const input = this.value.toLowerCase();
-            const filteredData = items.filter(item => item.bezeichnung.toLowerCase().startsWith(input));
-            displayDropdown(filteredData);
-        });
-    })
-    .catch(error => console.error('Error fetching data:', error));
+    var queryParam = Fachberech + "." + Kompetenzbereich + "." + Handlungsaspekt + "." + Kompetenz + "." + Kompetenzstufe;
+
+    if (oldQuery === queryParam) {
+        return;
+    }
+    oldQuery = queryParam;
+    fetch('https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/lehrplan-21-kanton-st-gallen/records?where=code%20like%20%22'+ queryParam  +'%25%22&limit=100&apikey=6698e1aad435de1a1ce4d15e7fddf6e98f0c7f78768c0af05497d54b')
+        .then(response => response.json())
+        .then(data => {
+            // No need to parse dataObj, it's already a JavaScript object
+            // Directly extract "bezeichnung" values and update the outer scope variable
+            data.results.forEach(item => {
+                if (item.bezeichnung) {
+                    items.push(item);
+                }
+            });
+
+            // Ensure the event listener is attached here to make sure it has access to the populated bezeichnungen array
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const filteredData = items.filter(item => item.bezeichnung.toLowerCase().startsWith(input));
+                displayDropdown(filteredData);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+
 
 function displayDropdown(data) {
     const dropdown = document.getElementById('dropdown');
     dropdown.innerHTML = ''; // Clear previous results
-    dropdown.style.display = data.length > 0 ? 'block' : 'none'; // Show or hide dropdown
+    dropdown.style.display = 'block'; // Show or hide dropdown
 
     data.forEach(item => {
         const option = document.createElement('div');

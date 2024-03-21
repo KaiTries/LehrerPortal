@@ -31,11 +31,56 @@
 <div id="popup" class="popup">
   <h2>Create Lernziel</h2>
 
+  <div class="popup-group">
+  <label for="type">Kompetenzbereich:</label><br>
+  <select id="Kompetenzbereich">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value=""></option>
+  </select>
+  </div>
 
-  <input type="text" id="searchInput" placeholder="Type to search...">
+  <div class="popup-group">
+  <label for="type">Handlungs-/Themenaspekt:</label><br>
+  <select id="Handlungsaspekt">
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value=""></option>
+  </select>
+    </div>
+
+    <div class="popup-group">
+  <label for="type">Kompetenz:</label><br>
+  <select id="Kompetenz">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value=""></option>
+  </select>
+    </div>
+
+    <div class="popup-group">
+  <label for="type">Kompetenzstufe:</label><br>
+  <select id="Kompetenzstufe">
+    <option value="a">a</option>
+    <option value="b">b</option>
+    <option value="c">c</option>
+    <option value="d">d</option>
+    <option value=""></option>
+  </select>
+    </div>
+
+    <div class="popup-group-dropdown">
+  <input type="text" id="searchInput" placeholder="">
   <div id="dropdown" class="dropdown-content"></div>
+    </div>
 
-
+  <div class="popup-group-manual">
   <label for="description">Description:</label><br>
   <input type="text" id="description" placeholder="Enter Description"><br><br>
   <label for="type">Type:</label><br>
@@ -48,6 +93,7 @@
     <option value="literatur im Fokus">literatur im Fokus</option>
   </select><br><br>
   <button id="create-lernziel-btn">Create</button>
+</div>
 </div>
 
 <main>
@@ -67,7 +113,7 @@
       <h3>Deutsch</h3>
       <div id="deutsch-content" class="scrollable-div">
         <div class="color-strip"></div>
-        <div th:each="lernziel : ${student.getLernziele(0)}" class="widget"
+        <div th:each="lernziel : ${student.getLernziele(11)}" class="widget"
              th:style="'background-color: ' + ${lernziel.getBewertung()}"
              th:color="${lernziel.getBewertung()}">
           <div class="top-row">
@@ -84,11 +130,22 @@
       </div>
     </section>
 
-    <section id="mathematik">
+    <section id="mathematik" class="section-div">
       <h3>Mathematik</h3>
       <div id="mathematik-content">
-        <div th:each="lernziel : ${student.getLernziele(1)}" class="widget">
-          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <div class="color-strip"></div>
+        <div th:each="lernziel : ${student.getLernziele(0)}" class="widget"
+             th:style="'background-color: ' + ${lernziel.getBewertung()}"
+             th:color="${lernziel.getBewertung()}">
+          <div class="top-row">
+            <div class="bewertung" th:id="${lernziel.getUid()}">
+              <div class="round-button brown" style="background-color: brown"></div>
+              <div class="round-button green" style="background-color: green"></div>
+              <div class="round-button orange" style="background-color: orange"></div>
+              <div class="round-button yellow" style="background-color: yellow"></div>
+            </div>
+            <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          </div>
           <p th:text="${lernziel.getBezeichnung()}">Description</p>
         </div>
       </div>
