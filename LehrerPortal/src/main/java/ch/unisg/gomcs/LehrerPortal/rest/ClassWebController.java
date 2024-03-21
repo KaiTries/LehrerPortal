@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,7 @@ public class ClassWebController {
         }
 
         MongoStudentDocument studentActual = studentProb.get();
+        System.out.println(studentActual.getLernziele(0));
         model.addAttribute("student", studentActual);
 
 
