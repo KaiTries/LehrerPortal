@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${className}">Class Page</title>
+    <style>
+        .class-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .profile-widget {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            color: #213547;
+        }
+
+        .profile-image img {
+            border-radius: 50%;
+            width: 80px; /* Adjust based on your preference */
+            height: 80px; /* Adjust to maintain aspect ratio */
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .profile-info h2, .profile-info p {
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<h1 th:text="${className} + ' - Students'">Klasse - Students</h1>
+<div class="class-container">
+    <div th:each="student : ${students}" class="profile-widget">
+        <div class="profile-image">
+            <img src="student.webp" alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+            <h2 th:text="${student.getName()}">Student Name</h2>
+            <p th:text="'Birthdate: ' + ${#dates.format(student.getDateOfBirth(), 'MMMM dd, yyyy')}">Birthdate</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

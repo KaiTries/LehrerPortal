@@ -1,9 +1,9 @@
 package ch.unisg.gomcs.LehrerPortal.rest;
 
 
-import ch.unisg.gomcs.LehrerPortal.database.MongoLernzielDocument;
-import ch.unisg.gomcs.LehrerPortal.database.MongoStudentDocument;
-import ch.unisg.gomcs.LehrerPortal.database.StudentService;
+import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoLernzielDocument;
+import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoStudentDocument;
+import ch.unisg.gomcs.LehrerPortal.domain.services.StudentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,10 +18,10 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping("/students")
-    public String createStudent(@RequestBody JsonNode name) {
+    public String createStudent(@RequestBody JsonNode student) {
         // map the name string to a JsonNode object
         // then extract the name from the JsonNode object
-        studentService.save(new MongoStudentDocument(name.get("name").asText()));
+        studentService.save(new MongoStudentDocument(student.get("name").asText(),student.get("dateOfBirth").asText()));
         return "Student created";
     }
 

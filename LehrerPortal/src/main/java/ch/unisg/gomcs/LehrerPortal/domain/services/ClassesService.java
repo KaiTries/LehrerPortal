@@ -1,5 +1,6 @@
-package ch.unisg.gomcs.LehrerPortal.database.classes;
+package ch.unisg.gomcs.LehrerPortal.domain.services;
 
+import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoClassDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +25,9 @@ public class ClassesService {
     public List<MongoClassDocument> findAll() {
         return classesRepository.findAll();
     }
+
+    public MongoClassDocument save(MongoClassDocument klass) {
+        return classesRepository.save(klass);
+    }
+
 }

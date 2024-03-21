@@ -1,5 +1,6 @@
-package ch.unisg.gomcs.LehrerPortal.database;
+package ch.unisg.gomcs.LehrerPortal.domain.services;
 
+import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoStudentDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

@@ -1,12 +1,12 @@
-package ch.unisg.gomcs.LehrerPortal.database.classes;
+package ch.unisg.gomcs.LehrerPortal.domain.dto;
 
 
-import ch.unisg.gomcs.LehrerPortal.database.MongoStudentDocument;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Document(collection = "classes")
@@ -28,6 +28,10 @@ public class MongoClassDocument {
 
     public void addStudent(MongoStudentDocument student) {
         this.students.add(student);
+    }
+
+    public Optional<MongoStudentDocument> getStudent(String name) {
+        return students.stream().filter(student -> student.getName().equals(name)).findFirst();
     }
 
 }

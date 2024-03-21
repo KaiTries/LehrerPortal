@@ -1,6 +1,7 @@
-package ch.unisg.gomcs.LehrerPortal.database;
+package ch.unisg.gomcs.LehrerPortal.domain.services;
 
 
+import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoStudentDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

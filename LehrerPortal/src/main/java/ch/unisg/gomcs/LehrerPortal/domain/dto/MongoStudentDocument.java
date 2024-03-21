@@ -1,4 +1,4 @@
-package ch.unisg.gomcs.LehrerPortal.database;
+package ch.unisg.gomcs.LehrerPortal.domain.dto;
 
 
 import lombok.Data;
@@ -12,16 +12,19 @@ import java.util.List;
 public class MongoStudentDocument {
     @Id
     private String name;
+    private String dateOfBirth;
     private List<MongoLernzielDocument> lernziele;
 
-    public MongoStudentDocument(String name) {
+    public MongoStudentDocument(String name, String dateOfBirth) {
         this.name = name;
+        this.dateOfBirth = dateOfBirth;
         this.lernziele = List.of();
     }
 
-    public MongoStudentDocument(String name, MongoLernzielDocument lernziel) {
+    public MongoStudentDocument(String name, String dateOfBirth ,MongoLernzielDocument lernziel) {
         this.name = name;
         this.lernziele = List.of(lernziel);
+        this.dateOfBirth = dateOfBirth;
     }
 
     public MongoStudentDocument() {
