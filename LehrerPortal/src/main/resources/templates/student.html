@@ -24,7 +24,7 @@
   <div>
     <button id="add-lernziel-btn" class="upload-btn">add</button>
     <button id="upload-btn" class="upload-btn">Upload</button>
-    <a th:href="@{/classes/{class}(class=${className})}" class="back-button">Back</a>
+    <a th:href="@{/classes/{class}(class=${className})}" class="back-button"><span class="back-icon">&#8592;</span> Back</a>
   </div>
 </header>
 
@@ -51,86 +51,98 @@
 </div>
 
 <main>
-  <section id="deutsch" class="section-div">
-    <h3>Deutsch</h3>
-    <div id="deutsch-content">
-      <div class="color-strip"></div>
-      <div th:each="lernziel : ${student.getLernziele(0)}" class="widget"
-           th:style="'background-color: ' + ${lernziel.getBewertung()}"
-           th:color="${lernziel.getBewertung()}">
-        <div class="top-row">
-          <div class="bewertung" th:id="${lernziel.getUid()}">
-            <div class="round-button brown" style="background-color: brown"></div>
-            <div class="round-button green" style="background-color: green"></div>
-            <div class="round-button orange" style="background-color: orange"></div>
-            <div class="round-button yellow" style="background-color: yellow"></div>
+  <student>
+    <img th:src="@{/images/student.webp}" alt="Profile Picture" class="profile-picture">
+    <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>
+    <p class="address">Address: 123 Main St, Anytown, AN 12345</p>
+    <p class="phone">Phone: (123) 456-7890</p>
+    <div style="display: flex; align-items: center;">
+      <p class="phone">Current Avg. Score:</p>
+      <div id="grade-button" class="round-button orange" style="background-color: orange; margin-left: 25px"></div>
+    </div>
+  </student>
+  <lernziele>
+    <section id="deutsch" class="section-div">
+      <h3>Deutsch</h3>
+      <div id="deutsch-content">
+        <div class="color-strip"></div>
+        <div th:each="lernziel : ${student.getLernziele(0)}" class="widget"
+             th:style="'background-color: ' + ${lernziel.getBewertung()}"
+             th:color="${lernziel.getBewertung()}">
+          <div class="top-row">
+            <div class="bewertung" th:id="${lernziel.getUid()}">
+              <div class="round-button brown" style="background-color: brown"></div>
+              <div class="round-button green" style="background-color: green"></div>
+              <div class="round-button orange" style="background-color: orange"></div>
+              <div class="round-button yellow" style="background-color: yellow"></div>
+            </div>
+            <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
           </div>
-          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          <p th:text="${lernziel.getBezeichnung()}">Description</p>
         </div>
-        <p th:text="${lernziel.getBezeichnung()}">Description</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="mathematik">
-    <h3>Mathematik</h3>
-    <div id="mathematik-content">
-      <div th:each="lernziel : ${student.getLernziele(1)}" class="widget">
-        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
-        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+    <section id="mathematik">
+      <h3>Mathematik</h3>
+      <div id="mathematik-content">
+        <div th:each="lernziel : ${student.getLernziele(1)}" class="widget">
+          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="natur">
-    <h3>Natur</h3>
-    <div id="natur-content">
-      <div th:each="lernziel : ${student.getLernziele(2)}" class="widget">
-        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
-        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+    <section id="natur">
+      <h3>Natur</h3>
+      <div id="natur-content">
+        <div th:each="lernziel : ${student.getLernziele(2)}" class="widget">
+          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="mensch">
-    <h3>Mensch</h3>
-    <div id="mensch-content">
-      <div th:each="lernziel : ${student.getLernziele(3)}" class="widget">
-        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
-        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+    <section id="mensch">
+      <h3>Mensch</h3>
+      <div id="mensch-content">
+        <div th:each="lernziel : ${student.getLernziele(3)}" class="widget">
+          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="gesellschaft">
-    <h3>Gesellschaft</h3>
-    <div id="gesellschaft-content">
-      <div th:each="lernziel : ${student.getLernziele(4)}" class="widget">
-        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
-        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+    <section id="gesellschaft">
+      <h3>Gesellschaft</h3>
+      <div id="gesellschaft-content">
+        <div th:each="lernziel : ${student.getLernziele(4)}" class="widget">
+          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="gestalten">
-    <h3>Gestalten</h3>
-    <div id="gestalten-content">
-      <div th:each="lernziel : ${student.getLernziele(5)}" class="widget">
-        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
-        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+    <section id="gestalten">
+      <h3>Gestalten</h3>
+      <div id="gestalten-content">
+        <div th:each="lernziel : ${student.getLernziele(5)}" class="widget">
+          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="musik">
-    <h3>Musik</h3>
-    <div id="musik-content">
-      <div th:each="lernziel : ${student.getLernziele(6)}" class="widget">
-        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
-        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+    <section id="musik">
+      <h3>Musik</h3>
+      <div id="musik-content">
+        <div th:each="lernziel : ${student.getLernziele(6)}" class="widget">
+          <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </lernziele>
 
 </main>
 

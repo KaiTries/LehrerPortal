@@ -279,34 +279,36 @@ document.getElementById('musik-link').addEventListener('click', function (event)
 const addEventListenerToLernziel = () => {
     const allRoundButtons = document.querySelectorAll('.round-button');
     allRoundButtons.forEach(button => {
-        button.addEventListener('click', e => {
+        if (button.id !== "grade-button") {
+            button.addEventListener('click', e => {
 
-            let lernzielUpdateData = {
-                uid: button.parentNode.id,
-                bewertung: button.classList[1]
-            }
+                let lernzielUpdateData = {
+                    uid: button.parentNode.id,
+                    bewertung: button.classList[1]
+                }
 
-            console.log(lernzielUpdateData);
+                console.log(lernzielUpdateData);
 
-            fetch(window.location.href, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(lernzielUpdateData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Bewertung updated successfully");
-                        window.location.reload();
-                    } else {
-                        console.error("Failed to update Bewertung");
-                    }
+                fetch(window.location.href, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(lernzielUpdateData)
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
+                    .then(response => {
+                        if (response.ok) {
+                            alert("Bewertung updated successfully");
+                            window.location.reload();
+                        } else {
+                            console.error("Failed to update Bewertung");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        }
     });
 }
 
@@ -369,4 +371,3 @@ async function doSomethingAfterSleep() {
     await sleep(1000);
     console.log('After sleep of 2 seconds');
 }
-
