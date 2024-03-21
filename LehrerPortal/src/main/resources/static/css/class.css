@@ -1,37 +1,71 @@
-body {
-   font-family: Arial, sans-serif;
-   margin: 0;
-   padding: 0;
-}
-
-
-
- .class-container {
+.profile-card {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
+    background-color: #f0f0f0;
+    color : #213547;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
- }
-
-.profile-widget {
-   display: flex;
-   align-items: center;
-   background-color: #f0f0f0;
-   padding: 20px;
-   border-radius: 10px;
-   max-width: 400px;
-   color: #213547;
+    margin: 10px;
+    flex: 1;
+    max-width: 300px;
+    min-width: 250px;
+    max-height: 150px;
+    min-height: 150px;
 }
 
-.profile-image img {
-   border-radius: 50%;
-   width: 80px; /* Adjust based on your preference */
-   height: 80px; /* Adjust to maintain aspect ratio */
-   object-fit: cover;
-   margin-right: 20px;
+.profile-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-right: 20px; /* Adjust space between left and right sections */
 }
 
-.profile-info h2, .profile-info p {
-   margin: 0;
+.profile-picture {
+    width: 100px; /* Adjust based on your needs */
+    height: 100px; /* Adjust based on your needs */
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the image covers the space without being distorted */
+    border: 3px solid #007BFF; /* Optional: adds a border around the image */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds a slight shadow for depth */
+}
+
+.name {
+    margin-top: 10px; /* Space between picture and name */
+    font-size: 18px; /* Adjust based on your needs */
+}
+.profile-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.profile-right p {
+    margin: 5px 0; /* Space between each line of information */
+    line-height: 1.5; /* Adjust line height for readability */
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 600px) {
+    .profile-card {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-left, .profile-right {
+        align-items: center;
+        text-align: center;
+    }
+    .profile-right {
+        margin-top: 20px;
+    }
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
 }

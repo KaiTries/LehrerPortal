@@ -6,7 +6,6 @@
   <title>Subject Selector</title>
   <link rel="stylesheet" th:href="@{/css/student.css}">
   <link rel="stylesheet" th:href="@{/css/global.css}">
-
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
      rel="stylesheet"> -->
 </head>
@@ -32,6 +31,12 @@
 
 <div id="popup" class="popup">
   <h2>Create Lernziel</h2>
+
+
+  <input type="text" id="searchInput" placeholder="Type to search...">
+  <div id="dropdown" class="dropdown-content"></div>
+
+
   <label for="description">Description:</label><br>
   <input type="text" id="description" placeholder="Enter Description"><br><br>
   <label for="type">Type:</label><br>

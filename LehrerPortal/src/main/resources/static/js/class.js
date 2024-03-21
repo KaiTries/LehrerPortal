@@ -69,7 +69,7 @@ document.getElementById("popup-ok-button").addEventListener("click", function ()
             if (response.ok) {
                 alert("Student created successfully");
                 togglePopup();
-                window.location.refresh();
+                window.location.reload();
 
                 // let newStudent = {
                 //     name: name,

@@ -4,10 +4,15 @@ let currentSelection = null;
 
 document.getElementById("create-lernziel-btn").addEventListener("click", function () {
 
-    const description = document.getElementById("description").value;
+    var description = document.getElementById("description").value;
+    var UUID = uuidv4();
+    if (!description) {
+        description = document.getElementById("searchInput").value;
+        UUID = selected.uid;
+    }
     const type = document.getElementById("type").value;
     const lernzielData = {
-        uid: 'abc123456',
+        uid: UUID,
         fb_id: currentSelection,
         f_id: 0,
         kb_id: 0,
@@ -182,5 +187,53 @@ const addEventListenerToLernziel = () => {
                     console.error('Error:', error);
                 });
         });
+    });
+}
+
+const items = [];
+let selected = null;
+
+
+fetch('https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/lehrplan-21-kanton-st-gallen/records?select=bezeichnung%2C%20uid&where=f_id%20%3D%2011&limit=100&apikey=6698e1aad435de1a1ce4d15e7fddf6e98f0c7f78768c0af05497d54b')
+    .then(response => response.json())
+    .then(data => {
+        // No need to parse dataObj, it's already a JavaScript object
+        // Directly extract "bezeichnung" values and update the outer scope variable
+        data.results.forEach(item => {
+            if (item.bezeichnung) {
+                items.push({ bezeichnung: item.bezeichnung, uid: item.uid });
+            }
+        });
+
+        // Ensure the event listener is attached here to make sure it has access to the populated bezeichnungen array
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const input = this.value.toLowerCase();
+            const filteredData = items.filter(item => item.bezeichnung.toLowerCase().startsWith(input));
+            displayDropdown(filteredData);
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+function displayDropdown(data) {
+    const dropdown = document.getElementById('dropdown');
+    dropdown.innerHTML = ''; // Clear previous results
+    dropdown.style.display = data.length > 0 ? 'block' : 'none'; // Show or hide dropdown
+
+    data.forEach(item => {
+        const option = document.createElement('div');
+        option.textContent = item.bezeichnung; // Use bezeichnung directly
+        option.addEventListener('click', function() {
+            document.getElementById('searchInput').value = item.bezeichnung; // Fill input with selected bezeichnung
+            dropdown.innerHTML = ''; // Clear dropdown
+            selected = items.find(i => i.uid === item.uid);
+        });
+        dropdown.appendChild(option);
+    });
+}
+
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
     });
 }

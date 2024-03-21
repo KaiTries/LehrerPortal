@@ -12,15 +12,16 @@
 
 <body>
 <header>
-    <div class="profile">
+    <div class="profile-picture">
         <img th:src="@{/images/persona.png}" alt="Profile Picture">
-        <div class="profile-info">
-            <h1>Brigit Britt</h1>
-            <p>Deutsch Lehrerin</p>
-            <p>Location: Sekundarschule St. Gallen</p>
-        </div>
+    </div>
+    <div class="profile-info">
+        <h1>Brigit Britt</h1>
+        <p>Deutsch Lehrerin</p>
+        <p>Location: Sekundarschule St. Gallen</p>
     </div>
 </header>
+
 
 <main>
     <div id="popup" class="popup" style="display: none;">
@@ -32,15 +33,16 @@
 
 
 
-    <div>
-        <button id="create-class" class="back-button">Add Class</button>
-    </div>
+
 
     <section class="cards">
         <div th:each="class : ${classes}" class="card">
             <h2 th:text="${class.getKlassenName()}">class name</h2>
             <p>I have this class on Monday morning.</p>
             <a th:href="@{/classes/{class}(class=${class.getKlassenName()})}">Goto class</a>
+        </div>
+        <div>
+            <button id="create-class" class="back-button">+</button>
         </div>
     </section>
 </main>
