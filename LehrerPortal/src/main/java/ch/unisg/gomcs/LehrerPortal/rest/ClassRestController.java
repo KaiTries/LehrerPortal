@@ -39,7 +39,6 @@ public class ClassRestController {
 
     /**
      * Add a student to a class
-     * @param name
      * @param klasse
      * @return
      */
