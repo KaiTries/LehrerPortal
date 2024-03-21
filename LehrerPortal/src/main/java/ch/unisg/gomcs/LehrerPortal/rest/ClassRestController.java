@@ -82,26 +82,4 @@ public class ClassRestController {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(classesService.findAll());
     }
-
-    /**
-     * get a class
-     * @return
-     * @throws JsonProcessingException
-     */
-    @GetMapping("/classes/{className}")
-    public String getClass(@PathVariable String className, Model model) throws JsonProcessingException {
-        Optional<MongoClassDocument> classProb = classesService.getClas(className);
-        if (classProb.isEmpty()) {
-            return "Class not found";
-        }
-        MongoClassDocument classActual = classProb.get();
-        List<MongoStudentDocument> students = classActual.getStudents();
-
-
-        model.addAttribute("className", className);
-        model.addAttribute("students", students);
-
-        return "class-template"; // Refers to class-template.html
-
-    }
 }
