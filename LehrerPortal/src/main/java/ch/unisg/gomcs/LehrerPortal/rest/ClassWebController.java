@@ -42,4 +42,20 @@ public class ClassWebController {
 
         return "class-template"; // Refers to class-template.html
     }
+
+   // TODO: Site for a student dynamically loaded from students db
+    @GetMapping("/classes/{klasse}/{student}")
+    public String getStudent(@PathVariable String klasse, @PathVariable String student) throws JsonProcessingException {
+        Optional<MongoClassDocument> classProb = classesService.getClas(klasse);
+        if (classProb.isEmpty()) {
+            return "Class not found";
+        }
+        MongoClassDocument classActual = classProb.get();
+        Optional<MongoStudentDocument> studentProb = classActual.getStudent(student);
+        if (studentProb.isEmpty()) {
+            return "Student not found";
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(studentProb.get());
+    }
 }
