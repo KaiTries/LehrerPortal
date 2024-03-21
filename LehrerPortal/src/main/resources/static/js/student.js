@@ -36,7 +36,7 @@ document.getElementById("create-lernziel-btn").addEventListener("click", functio
             bezeichnung: description
         };
     } else {
-        lernzielData = possible_item;
+        lernzielData = {...possible_item, aufzaehlungspunkt: type};
     }
 
     fetch(window.location.href, {

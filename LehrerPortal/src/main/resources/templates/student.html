@@ -81,30 +81,30 @@
     </div>
 
   <div class="popup-group-manual">
-  <label for="description">Description:</label><br>
+  <label for="description">Beschreibung:</label><br>
   <input type="text" id="description" placeholder="Enter Description"><br><br>
   <label for="type">Type:</label><br>
   <select id="type">
     <option value="hören">Hören</option>
-    <option value="lesen">lesen</option>
-    <option value="sprechen">sprechen</option>
-    <option value="schreiben">schreiben</option>
-    <option value="sprache im Fokus">sprache im Fokus</option>
-    <option value="literatur im Fokus">literatur im Fokus</option>
+    <option value="lesen">Lesen</option>
+    <option value="sprechen">Sprechen</option>
+    <option value="schreiben">Schreiben</option>
+    <option value="sprache im Fokus">Sprache im Fokus</option>
+    <option value="literatur im Fokus">Literatur im Fokus</option>
   </select><br><br>
-  <button id="create-lernziel-btn">Create</button>
+  <button id="create-lernziel-btn">Erstellen</button>
 </div>
 </div>
 
 <main>
   <student>
     <img th:src="@{/images/student.webp}" alt="Profile Picture" class="profile-picture">
-    <h2 th:text="${student.getName()}">Student Name</h2>
-    <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>
-    <p class="address">Address: 123 Main St, Anytown, AN 12345</p>
-    <p class="phone">Phone: (123) 456-7890</p>
+    <h2 th:text="${student.getName()}">Schüler</h2>
+    <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Geburtstag</p>
+    <p class="address">Addresse: Goliathgasse 25, 9000 St.Gallen</p>
+    <p class="phone">Telefon(Mama): (123) 456-7890</p>
     <div style="display: flex; align-items: center;">
-      <p class="phone">Current Avg. Score:</p>
+      <p class="phone">Aktueller Leistungsgrad:</p>
       <div id="grade-button" class="round-button orange" style="background-color: orange; margin-left: 25px"></div>
     </div>
   </student>
@@ -125,7 +125,7 @@
             </div>
             <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
           </div>
-          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+          <p th:text="${lernziel.getBezeichnung()}">Beschreibung</p>
         </div>
       </div>
     </section>
@@ -146,7 +146,7 @@
             </div>
             <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
           </div>
-          <p th:text="${lernziel.getBezeichnung()}">Description</p>
+          <p th:text="${lernziel.getBezeichnung()}">Beschreibung</p>
         </div>
       </div>
     </section>
