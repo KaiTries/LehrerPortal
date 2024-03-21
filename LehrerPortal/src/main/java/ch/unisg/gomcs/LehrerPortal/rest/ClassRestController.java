@@ -66,6 +66,7 @@ public class ClassRestController {
             return "Student not found";
         }
         studentProb.get().addLernziel(lernziel);
+        System.out.println(lernziel);
         classesService.save(classActual);
         return "Lernziel added";
     }

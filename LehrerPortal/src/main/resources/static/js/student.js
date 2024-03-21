@@ -89,55 +89,55 @@ document.getElementById("upload-btn").addEventListener("click", function () {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = 'image/*';
-    fileInput.addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            selectedFile = file;
-            var jsonObj = [
-                    "Ich kann in Sätzen Kommas korrekt setzen." ,
-                    "Ich kann die 5 Kommaregeln in Sätzen anwenden." ,
-                    "Ich kann mehrere Sätze mit einem Bindewort sinngemäss zu einem Satz verknüpfen." ,
-                    "Ich kann mit vorgegebenen Bindewörtern Sätze bilden." ,
-                    "Ich kann in Sätzen Bindewörter passend einfügen." ,
+    fileInput.addEventListener('change', async function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFile = file;
+                var jsonObj = [
+                    "Ich kann in Sätzen Kommas korrekt setzen.",
+                    "Ich kann die 5 Kommaregeln in Sätzen anwenden.",
+                    "Ich kann mehrere Sätze mit einem Bindewort sinngemäss zu einem Satz verknüpfen.",
+                    "Ich kann mit vorgegebenen Bindewörtern Sätze bilden.",
+                    "Ich kann in Sätzen Bindewörter passend einfügen.",
                     "Ich setze Rechtschreibung und Grammatik korrekt um."
-                    ]
-            for (let i = 0; i < jsonObj.length; i++) {
-                doSomethingAfterSleep();
-                var lernzielData = {
-                    uid: uuidv4(),
-                    fb_id: 1,
-                    f_id: 11,
-                    kb_id: 0,
-                    ha_id: 0,
-                    k_id: "xyz789",
-                    code: "ABC123",
-                    aufbau: "Some aufbau",
-                    zyklus: "Some zyklus",
-                    aufzaehlungspunkt: "Können",
-                    strukturtyp: "Some strukturtyp",
-                    sprache: "German",
-                    bezeichnung: jsonObj[i]
-                };
-        fetch(window.location.href, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(lernzielData)
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            console.log("Lernziel created successfully");
-                        } else {
-                            console.error("Failed to create Lernziel");
-                        }
+                ]
+                for (let i = 0; i < jsonObj.length; i++) {
+                    await doSomethingAfterSleep();
+                    var lernzielData = {
+                        uid: uuidv4(),
+                        fb_id: 1,
+                        f_id: 11,
+                        kb_id: 0,
+                        ha_id: 0,
+                        k_id: "xyz789",
+                        code: "ABC123",
+                        aufbau: "Some aufbau",
+                        zyklus: "Some zyklus",
+                        aufzaehlungspunkt: "Können",
+                        strukturtyp: "Some strukturtyp",
+                        sprache: "German",
+                        bezeichnung: jsonObj[i]
+                    };
+                    fetch(window.location.href, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(lernzielData)
                     })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    })
+                        .then(response => {
+                            if (response.ok) {
+                                console.log("Lernziel created successfully");
+                            } else {
+                                console.error("Failed to create Lernziel");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        })
+                }
             }
         }
-    }
 
     );
     fileInput.click();
@@ -406,7 +406,7 @@ function displayDropdown(data) {
 }
 
 function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[x]/g, function(c) {
         var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
