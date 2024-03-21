@@ -50,57 +50,93 @@
     <h1>Deutsch</h1>
     <p>This is the content for Deutsch.</p>
     <div id="deutsch-content">
-      content deutschhhh
       <div th:each="lernziel : ${student.getLernziele(0)}" class="card">
-        asdfadsfasaf
+        <h2>Deutsch</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
         <p th:text="${lernziel.getBezeichnung()}">Description</p>
-<!--        <div class="profile-info">-->
-<!--          <h2 th:text="${student.getName()}">Student Name</h2>-->
-<!--          <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>-->
-<!--        </div>-->
       </div>
-
     </div>
   </section>
   <section id="mathematik">
     <h1>Mathematik</h1>
     <p>This is the content for Mathematik.</p>
-    <div id="mathematik-content"></div>
+    <div id="mathematik-content">
+      <div th:each="lernziel : ${student.getLernziele(1)}" class="card">
+        <h2>Mathematik</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+      </div>
+    </div>
   </section>
   <section id="natur">
     <h1>Natur</h1>
     <p>This is the content for Natur.</p>
-    <div id="natur-content"></div>
+    <div id="natur-content">
+      <div th:each="lernziel : ${student.getLernziele(2)}" class="card">
+        <h2>Natur</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+      </div>
+    </div>
   </section>
   <section id="mensch">
     <h1>Mensch</h1>
     <p>This is the content for Mensch.</p>
-    <div id="mensch-content"></div>
+    <div id="mensch-content">
+      <div th:each="lernziel : ${student.getLernziele(3)}" class="card">
+        <h2>Mensch</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+      </div>
+    </div>
   </section>
   <section id="gesellschaft">
     <h1>Gesellschaft</h1>
     <p>This is the content for Gesellschaft.</p>
-    <div id="gesellschaft-content"></div>
+    <div id="gesellschaft-content">
+      <div th:each="lernziel : ${student.getLernziele(4)}" class="card">
+        <h2>Gesellschaft</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+      </div>
+    </div>
   </section>
   <section id="gestalten">
     <h1>Gestalten</h1>
     <p>This is the content for Gestalten.</p>
-    <div id="gestalten-content"></div>
+    <div id="gestalten-content">
+      <div th:each="lernziel : ${student.getLernziele(5)}" class="card">
+        <h2>Gestalten</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+      </div>
+    </div>
   </section>
   <section id="musik">
     <h1>Musik</h1>
     <p>This is the content for Musik.</p>
-    <div id="musik-content"></div>
+    <div id="musik-content">
+      <div th:each="lernziel : ${student.getLernziele(6)}" class="card">
+        <h2>Musik</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <p th:text="${lernziel.getBezeichnung()}">Description</p>
+      </div>
+    </div>
   </section>
   <section id="bewegung">
     <h1>Bewegung und Sport</h1>
     <p>This is the content for Bewegung und Sport.</p>
-    <div id="bewegung-content"></div>
+    <div id="bewegung-content">
+      <div th:each="lernziel : ${student.getLernziele(7)}" class="card">
+        <h2>Bewegung</h2>
+        <h4 th:text="${lernziel.getAufzaehlungspunkt()}"></h4>
+        <p th:text="${lernziel.getBezeichnung()}"></p>
+      </div>
+    </div>
   </section>
 </main>
 
 <script type="module" th:src="@{/js/student.js}"></script>
-<!--<script type="module" th:src="@{resources/lehrplan-21-kanton-st-gallen.js}"></script>-->
 
 </body>
 
