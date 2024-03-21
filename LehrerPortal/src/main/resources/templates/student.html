@@ -59,9 +59,12 @@
     <h1>Deutsch</h1>
     <p>This is the content for Deutsch.</p>
     <div id="deutsch-content">
-      <div th:each="lernziel : ${student.getLernziele(0)}" class="card" th:id="${lernziel.getUid()}">
+      <div class="color-strip"></div>
+      <div th:each="lernziel : ${student.getLernziele(0)}" class="card"
+           th:style="'background-color: ' + ${lernziel.getBewertung()}"
+           th:color="${lernziel.getBewertung()}">
 
-        <div class="bewertung">
+        <div class="bewertung" th:id="${lernziel.getUid()}">
           <div class="round-button brown" style="background-color: brown"></div>
           <div class="round-button green" style="background-color: green"></div>
           <div class="round-button orange" style="background-color: orange"></div>

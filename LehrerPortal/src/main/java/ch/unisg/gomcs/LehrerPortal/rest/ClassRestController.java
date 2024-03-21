@@ -82,4 +82,24 @@ public class ClassRestController {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(classesService.findAll());
     }
+
+
+    @PutMapping("/classes/{klasse}/{student}")
+    public String updateLernziel(@RequestBody JsonNode update, @PathVariable String klasse, @PathVariable String student) {
+        Optional<MongoClassDocument> classProb = classesService.getClas(klasse);
+        if (classProb.isEmpty()) {
+            return "Class not found";
+        }
+        MongoClassDocument classActual = classProb.get();
+        Optional<MongoStudentDocument> studentProb = classActual.getStudent(student);
+        if (studentProb.isEmpty()) {
+            return "Student not found";
+        }
+        studentProb.get().updateLernziel(update.get("uid").asText(), update.get("bewertung").asText());
+
+        classesService.save(classActual);
+        return "Lernziel updated";
+    }
+
+
 }

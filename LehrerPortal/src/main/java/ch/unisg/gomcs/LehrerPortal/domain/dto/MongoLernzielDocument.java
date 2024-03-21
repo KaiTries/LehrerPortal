@@ -19,13 +19,13 @@ public class MongoLernzielDocument {
     private String strukturtyp;
     private String sprache;
     private String bezeichnung;
-    private int bewertung;
+    private String bewertung;
     private long timestamp;
 
     public MongoLernzielDocument() {
     }
 
-    public MongoLernzielDocument(String uid, int fb_id, int f_id, int kb_id, int ha_id, String k_id, String code, String aufbau, String zyklus, String aufzaehlungspunkt, String strukturtyp, String sprache, String bezeichnung, int bewertung) {
+    public MongoLernzielDocument(String uid, int fb_id, int f_id, int kb_id, int ha_id, String k_id, String code, String aufbau, String zyklus, String aufzaehlungspunkt, String strukturtyp, String sprache, String bezeichnung, String bewertung) {
         this.uid = uid;
         this.fb_id = fb_id;
         this.f_id = f_id;
