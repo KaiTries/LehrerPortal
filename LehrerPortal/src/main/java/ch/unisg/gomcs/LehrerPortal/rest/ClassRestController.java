@@ -1,6 +1,7 @@
 package ch.unisg.gomcs.LehrerPortal.rest;
 
 
+import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoLernzielDocument;
 import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoStudentDocument;
 import ch.unisg.gomcs.LehrerPortal.domain.services.ClassesService;
 import ch.unisg.gomcs.LehrerPortal.domain.dto.MongoClassDocument;
@@ -35,8 +36,6 @@ public class ClassRestController {
         return "Class created";
     }
 
-
-
     /**
      * Add a student to a class
      * @param klasse
@@ -54,8 +53,8 @@ public class ClassRestController {
         return "Student added";
     }
 
-    @GetMapping("/classes/{klasse}/{student}")
-    public String getStudent(@PathVariable String klasse, @PathVariable String student) throws JsonProcessingException {
+    @PostMapping("classes/{klasse}/{student}")
+    public String addLernziel(@RequestBody MongoLernzielDocument lernziel, @PathVariable String klasse, @PathVariable String student) {
         Optional<MongoClassDocument> classProb = classesService.getClas(klasse);
         if (classProb.isEmpty()) {
             return "Class not found";
@@ -65,8 +64,9 @@ public class ClassRestController {
         if (studentProb.isEmpty()) {
             return "Student not found";
         }
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(studentProb.get());
+        studentProb.get().addLernziel(lernziel);
+        classesService.save(classActual);
+        return "Lernziel added";
     }
 
 

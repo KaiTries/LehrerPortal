@@ -33,4 +33,9 @@ public class MongoStudentDocument {
     public void addLernziel(MongoLernzielDocument lernziel) {
         this.lernziele.add(lernziel);
     }
+
+
+    public List<MongoLernzielDocument> getLernziele(int subject) {
+        return lernziele.stream().filter(lernziel -> lernziel.getF_id() == subject).toList();
+    }
 }

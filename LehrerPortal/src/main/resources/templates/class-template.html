@@ -3,45 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${className}">Class Page</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-    <style>
-        .class-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .profile-widget {
-            display: flex;
-            align-items: center;
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 400px;
-            color: #213547;
-        }
-
-        .profile-image img {
-            border-radius: 50%;
-            width: 80px; /* Adjust based on your preference */
-            height: 80px; /* Adjust to maintain aspect ratio */
-            object-fit: cover;
-            margin-right: 20px;
-        }
-
-        .profile-info h2, .profile-info p {
-            margin: 0;
-        }
-    </style>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/class.css}">
 </head>
 <body>
 <h1 th:text="${className} + ' - Students'">Klasse - Students</h1>
+
+<div id="popup" class="popup" style="display: none;">
+    <h1>Schüler:</h1>
+    <input type="text" id="name" placeholder="Enter Name">
+    <button id="popup-ok-button">Ok</button>
+</div>
+
 <div class="class-container">
-    <div th:each="student : ${students}" class="profile-widget">
+    <div>
+        <a id="back-button" href="/" class="back-button">back</a>
+        <button id="create-student" class="back-button">Add Student</button>
+    </div>
+    <a th:each="student : ${students}" class="profile-widget" th:href="@{/classes/class/{name}(name=${student.getName()})}">
         <div class="profile-image">
             <img th:src="@{/images/student.webp}" alt="Profile Picture">
         </div>
@@ -49,7 +28,9 @@
             <h2 th:text="${student.getName()}">Student Name</h2>
             <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>
         </div>
-    </div>
+    </a>
 </div>
+
+<script type="module" th:src="@{/js/class.js}"></script>
 </body>
 </html>
