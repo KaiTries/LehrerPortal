@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-      <html lang="en">
-
-      <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Subject Selector</title>
-  <link rel="stylesheet" href="student.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subject Selector</title>
+  <link rel="stylesheet" th:href="@{/css/student.css}">
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
      rel="stylesheet"> -->
 </head>
 
 <body>
 <header>
-  <a href="class.html" class="back-button">Back</a>
+  <a href="/classees/class" class="back-button">Back</a>
   <nav>
     <ul>
       <button id="add-lernziel-btn" class="upload-btn">add</button>
@@ -93,8 +88,8 @@
   </section>
 </main>
 
-<script type="module" src="./student.js"></script>
-<script type="module" src="resources/lehrplan-21-kanton-st-gallen.js"></script>
+<script type="module" th:src="@{./student.js}"></script>
+<script type="module" th:src="@{resources/lehrplan-21-kanton-st-gallen.js}"></script>
 
 </body>
 
