@@ -99,15 +99,10 @@ header .profile-info {
     font-size: 1.2em;
 }
 
-
-
-
-
 .cards {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-
 }
 
 .card {

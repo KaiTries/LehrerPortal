@@ -177,7 +177,6 @@ const removeAll = () => {
     document.getElementById("gesellschaft").style.display = "none";
     document.getElementById("gestalten").style.display = "none";
     document.getElementById("musik").style.display = "none";
-    document.getElementById("bewegung").style.display = "none";
 }
 
 document.getElementById('deutsch-link').addEventListener('click', function (event) {
@@ -231,13 +230,6 @@ document.getElementById('musik-link').addEventListener('click', function (event)
     document.getElementById("gesellschaft").style.display = "gesellschaft";
 });
 
-document.getElementById('bewegung-link').addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent the default link behavior
-    currentSelection = 7;
-    removeAll();
-    document.getElementById("bewegung").style.display = "block";
-});
-
 const addEventListenerToLernziel = () => {
     const allRoundButtons = document.querySelectorAll('.round-button');
     allRoundButtons.forEach(button => {
@@ -250,7 +242,7 @@ const addEventListenerToLernziel = () => {
 
             console.log(lernzielUpdateData);
 
-            fetch(`http://localhost:8080/classes/class/test`, {
+            fetch(window.location.href, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
