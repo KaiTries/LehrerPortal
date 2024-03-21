@@ -49,6 +49,9 @@ a:hover {
         color: #213547;
         background-color: #ffffff;
     }
+    a {
+        color: #213547;
+    }
     a:hover {
         color: #747bff;
     }
