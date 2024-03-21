@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${className}">Class Page</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/class.css}">
 </head>
 <body>
-<h1 th:text="${className} + ' - Students'">Klasse - Students</h1>
 
 <div id="popup" class="popup" style="display: none;">
     <h1>Schüler:</h1>
     <input type="text" id="name" placeholder="Enter Name">
     <button id="popup-ok-button">Ok</button>
+</div>
+<div class="title-class">
+    <h1 th:text="${className} + ' - Students'">Klasse - Students</h1>
 </div>
 
 <div class="class-container">
@@ -20,13 +22,15 @@
         <a id="back-button" href="/" class="back-button">back</a>
         <button id="create-student" class="back-button">Add Student</button>
     </div>
-    <a th:each="student : ${students}" class="profile-widget" th:href="@{/classes/class/{name}(name=${student.getName()})}">
-        <div class="profile-image">
-            <img th:src="@{/images/student.webp}" alt="Profile Picture">
-        </div>
-        <div class="profile-info">
-            <h2 th:text="${student.getName()}">Student Name</h2>
-            <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>
+    <a th:each="student : ${students}"  th:href="@{/classes/{className}/{name}(name=${student.getName()},className=${className})}">
+        <div class="profile-widget">
+            <div class="profile-image">
+                <img th:src="@{/images/student.webp}" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2 th:text="${student.getName()}">Student Name</h2>
+                <p th:text="'Birthdate: ' + ${student.getDateOfBirth()}">Birthdate</p>
+            </div>
         </div>
     </a>
 </div>

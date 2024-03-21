@@ -52,13 +52,13 @@ public class ClassWebController {
         MongoClassDocument classActual = classProb.get();
         Optional<MongoStudentDocument> studentProb = classActual.getStudent(student);
         if (studentProb.isEmpty()) {
-            model.addAttribute("className", klasse);
+
             model.addAttribute("students", classActual.getStudents());
             return "class-template";
         }
 
         MongoStudentDocument studentActual = studentProb.get();
-        System.out.println(studentActual.getLernziele(0));
+        model.addAttribute("className", klasse);
         model.addAttribute("student", studentActual);
 
         return "student";

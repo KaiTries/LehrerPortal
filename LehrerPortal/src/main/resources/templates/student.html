@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subject Selector</title>
   <link rel="stylesheet" th:href="@{/css/student.css}">
+  <link rel="stylesheet" th:href="@{/css/global.css}">
+
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
      rel="stylesheet"> -->
 </head>
 
 <body>
 <header>
-  <a href="/classes/class" class="back-button">Back</a>
+  <a th:href="@{/classes/{class}(class=${className})}" class="back-button">Back</a>
   <nav>
     <ul>
       <button id="add-lernziel-btn" class="upload-btn">add</button>

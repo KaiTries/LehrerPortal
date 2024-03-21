@@ -58,7 +58,7 @@ document.getElementById("popup-ok-button").addEventListener("click", function ()
         dateOfBirth: "1995-07-22",
     };
 
-    fetch('http://localhost:8080/classes/class', {
+    fetch(window.location.href, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ document.getElementById("popup-ok-button").addEventListener("click", function ()
             if (response.ok) {
                 alert("Student created successfully");
                 togglePopup();
-                window.location.href = 'http://localhost:8080/classes/class';
+                window.location.refresh();
 
                 // let newStudent = {
                 //     name: name,

@@ -5,7 +5,6 @@ body {
 }
 
 header {
-    color: #222;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -16,7 +15,6 @@ header {
 
 .back-button {
     text-decoration: none;
-    color: #222;
     font-weight: bold;
     margin-right: 30px;
 }
@@ -36,7 +34,6 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #222;
 }
 
 
